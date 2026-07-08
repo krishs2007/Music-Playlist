@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Playlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Basic Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+ 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+ 
+    ul {
+      list-style: none;
+    }
+ 
+    /* ===== Navbar ===== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000000;
+    }
+ 
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1DB954;
+    }
+ 
+    .nav-links {
+      display: flex;
+    }
+ 
+    .nav-links li {
+      margin-left: 25px;
+    }
+ 
+    .nav-links a {
+      color: #b3b3b3;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+ 
+    .nav-links a:hover {
+      color: #1DB954;
+    }
+ 
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeIn 1.5s ease-in;
+    }
+ 
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+ 
+    .hero h1 span {
+      color: #1DB954;
+    }
+ 
+    .hero p {
+      color: #b3b3b3;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+ 
+    .btn-primary {
+      display: inline-block;
+      background-color: #1DB954;
+      color: #000000;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+ 
+    .btn-primary:hover {
+      background-color: #17a34a;
+      transform: scale(1.05);
+    }
+ 
+    /* ===== Section Title ===== */
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+ 
+    /* ===== Song Grid ===== */
+    .song-grid-section {
+      padding: 60px 40px;
+    }
+ 
+    .song-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+ 
+    .song-card {
+      background-color: #1c1c1e;
+      border-radius: 10px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+ 
+    .song-card:hover {
+      transform: translateY(-8px);
+    }
+ 
+    .album-art {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+ 
+    .album-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+ 
+    .song-card:hover .album-art img {
+      transform: scale(1.08);
+    }
+ 
+    .song-title {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+ 
+    .song-artist {
+      color: #b3b3b3;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+ 
+    .song-genre {
+      display: inline-block;
+      background-color: #17331f;
+      color: #1DB954;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+ 
+    /* ===== About Section ===== */
+    .about-section {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 50px 20px 90px;
+      text-align: center;
+      color: #b3b3b3;
+    }
+ 
+    /* ===== Footer ===== */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000000;
+      color: #b3b3b3;
+      font-size: 14px;
+    }
+ 
+    .social-icons a {
+      margin-left: 15px;
+      font-size: 18px;
+    }
+ 
+    /* ===== Simple Fade In Animation ===== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+ 
+    /* ===== Basic Responsive ===== */
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+      }
+ 
+      .nav-links li {
+        margin: 5px 10px;
+      }
+ 
+      .hero h1 {
+        font-size: 28px;
+      }
+ 
+      .footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header / Navbar ===== -->
+  <header class="navbar">
+    <div class="logo">BeatBox</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="">Home</a></li>
+        <li><a href="">Playlists</a></li>
+        <li><a href="">Songs</a></li>
+        <li><a href="">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Your Music, <span>Your Vibe</span></h1>
+    <p>Discover, play, and organize your favorite tracks — all in one place.</p>
+    <a href="#songs" class="btn-primary">Browse Songs</a>
+  </section>
+
+  <section class="song-grid-section" id="songs">
+    <h2 class="section-title">Trending Now</h2>
+
+    <div class="song-grid">
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRKTDceVZKEaithxD3D7V1Di9MG_JFWlxq9iVtTba9k9JytFkMPadTqKdyqt9Az" /></div>
+        <h3 class="song-title">Midnight Drive</h3>
+        <p class="song-artist">Luna Wave</p>
+        <span class="song-genre">Synthwave</span>
+      </div>
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRdFs2hWXeCnMy-hSWNK7Y_Jf1K1tarpFPgGqEB8SBCjlk0pOBCN5x_ko1tgyVi"/></div>
+        <h3 class="song-title">Broken Strings</h3>
+        <p class="song-artist">Echo Riders</p>
+        <span class="song-genre">Rock</span>
+      </div>
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJONqoEbb7tY4fWUD9-k4xfkmDxTDsXL_s7FNav-kAAhrbvkPje9s-JkA-7lFJ"/></div>
+        <h3 class="song-title">Golden Hour</h3>
+        <p class="song-artist">Ivory Keys</p>
+        <span class="song-genre">Jazz</span>
+      </div>
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTI1NVGO2uupwJl-itZQg1lERQj8gCwt5ufPY2k0S5UJOIWHV0LDCgKR7mWNAgP" /></div>
+        <h3 class="song-title">Street Pulse</h3>
+        <p class="song-artist">Beat District</p>
+        <span class="song-genre">Hip-Hop</span>
+      </div>
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSnLwvFsThN-yrBWUz1iXSmlJ5bprlJAPuz4nimidn5IjzUtO2AdQeYIPZTGq93"></div>
+        <h3 class="song-title">Neon Lights</h3>
+        <p class="song-artist">Aria Skye</p>
+        <span class="song-genre">Pop</span>
+      </div>
+
+      <div class="song-card">
+        <div class="album-art"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeD5lYznFP8WHDzfok7tThMt97SqlfzQkdaplEDn5R-VxF4_6Ugm8GGBfB7R8w"/></div>
+        <h3 class="song-title">Silent Rain</h3>
+        <p class="song-artist">Nova Strings</p>
+        <span class="song-genre">Classical</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== About Section ===== -->
+  <section class="about-section" id="about">
+    <h2 class="section-title">About BeatBox</h2>
+    <p>BeatBox is a simple playlist catalog built to explore and organize music by genre, artist, and mood.</p>
+  </section>
+</body>
+</html>
