@@ -5,470 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Playlist</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: #000000;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1DB954;
-    }
-
-    .nav-links {
-      display: flex;
-    }
-
-    .nav-links li {
-      margin-left: 25px;
-    }
-
-    .nav-links a {
-      color: #b3b3b3;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #1DB954;
-    }
-
-    .navbar-right {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-login-btn {
-      margin-left: 30px;
-      background-color: #1DB954;
-      color: #000000;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 13px;
-      border: none;
-      padding: 9px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav-login-btn:hover {
-      background-color: #17a34a;
-      transform: scale(1.05);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 span {
-      color: #1DB954;
-    }
-
-    .hero p {
-      color: #b3b3b3;
-      font-size: 16px;
-      margin-bottom: 25px;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background-color: #1DB954;
-      color: #000000;
-      font-weight: 700;
-      padding: 12px 28px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 15px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      background-color: #17a34a;
-      transform: scale(1.05);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    /* ===== Featured Slider ===== */
-    .slider-section {
-      padding: 40px 40px 0;
-    }
-
-    .slider {
-      position: relative;
-      max-width: 500px;
-      margin: 0 auto;
-      background-color: #1c1c1e;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .slide {
-      display: none;
-      text-align: center;
-      padding: 25px;
-      animation: fadeIn 0.6s ease-in;
-    }
-
-    .slide.active {
-      display: block;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .slide h3 {
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
-    .slide p {
-      color: #b3b3b3;
-      font-size: 14px;
-    }
-
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #ffffff;
-      border: none;
-      font-size: 20px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .slider-btn:hover {
-      background-color: #1DB954;
-    }
-
-    .prev {
-      left: 10px;
-    }
-
-    .next {
-      right: 10px;
-    }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding-bottom: 18px;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background-color: #444444;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .dot.active {
-      background-color: #1DB954;
-    }
-
-    /* ===== Song Grid ===== */
-    .song-grid-section {
-      padding: 60px 40px;
-    }
-
-    .song-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .song-card {
-      background-color: #1c1c1e;
-      border-radius: 10px;
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .song-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .album-art {
-      width: 100%;
-      height: 150px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-
-    .album-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .song-card:hover .album-art img {
-      transform: scale(1.08);
-    }
-
-    .song-title {
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .song-artist {
-      color: #b3b3b3;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .song-genre {
-      display: inline-block;
-      background-color: #17331f;
-      color: #1DB954;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 20px;
-    }
-
-    /* ===== Auth (Login / Register) Modal ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      animation: fadeIn 0.3s ease-in;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .auth-box {
-      max-width: 360px;
-      width: 90%;
-      background-color: #121212;
-      border-radius: 10px;
-      padding: 25px;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: none;
-      border: none;
-      color: #b3b3b3;
-      font-size: 18px;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .modal-close:hover {
-      color: #1DB954;
-    }
-
-    .auth-tabs {
-      display: flex;
-      margin-bottom: 20px;
-      background-color: #1c1c1e;
-      border-radius: 30px;
-      overflow: hidden;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 12px;
-      background: none;
-      border: none;
-      color: #b3b3b3;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .tab-btn.active {
-      background-color: #1DB954;
-      color: #000000;
-    }
-
-    .auth-form {
-      display: none;
-      background-color: #1c1c1e;
-      border-radius: 10px;
-      padding: 25px;
-      animation: fadeIn 0.4s ease-in;
-    }
-
-    .auth-form.active {
-      display: block;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      color: #b3b3b3;
-      margin-bottom: 6px;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 6px;
-      border: 1px solid #333333;
-      background-color: #121212;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 14px;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: #1DB954;
-      transition: border-color 0.3s ease;
-    }
-
-    .auth-form .btn-primary {
-      width: 100%;
-      margin-top: 6px;
-    }
-
-    .form-msg {
-      margin-top: 14px;
-      font-size: 13px;
-      text-align: center;
-      min-height: 18px;
-    }
-
-    .form-msg.error {
-      color: #ff4d4d;
-    }
-
-    .form-msg.success {
-      color: #1DB954;
-    }
-
-    /* ===== About Section ===== */
-    .about-section {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 50px 20px 90px;
-      text-align: center;
-      color: #b3b3b3;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: #000000;
-      color: #b3b3b3;
-      font-size: 14px;
-    }
-
-    .social-icons a {
-      margin-left: 15px;
-      font-size: 18px;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-      }
-
-      .nav-links li {
-        margin: 5px 10px;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .footer {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{% static 'css/st.css' %}">
 </head>
 <body>
 
@@ -492,7 +29,6 @@
     <a href="#songs" class="btn-primary">Browse Songs</a>
   </section>
 
-  <!-- ===== Practical 2: Featured Slider ===== -->
   <section class="slider-section">
     <h2 class="section-title">Featured This Week</h2>
 
@@ -500,24 +36,21 @@
       <button class="slider-btn prev" id="prevBtn">&#10094;</button>
 
       <div class="slide active">
-        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRKTDceVZKEaithxD3D7V1Di9MG_JFWlxq9iVtTba9k9JytFkMPadTqKdyqt9Az
-" alt="Midnight Drive">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.vtxJyVgEpiqDJcWQRz4-3gHaEK?r=0&pid=Api&P=0&h=180" alt="Midnight Drive album art" alt="Midnight Drive">
         <h3>Midnight Drive</h3>
         <p>Luna Wave · Synthwave</p>
       </div>
 
       <div class="slide">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRdFs2hWXeCnMy-hSWNK7Y_Jf1K1tarpFPgGqEB8SBCjlk0pOBCN5x_ko1tgyVi
-" alt="Golden Hour">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.aAyt4wWE05laXd0QjUO9YwHaHa?r=0&pid=Api&P=0&h=180" alt="Golden Hour album art" alt="Golden Hour">
         <h3>Golden Hour</h3>
         <p>Ivory Keys · Jazz</p>
       </div>
 
       <div class="slide">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJONqoEbb7tY4fWUD9-k4xfkmDxTDsXL_s7FNav-kAAhrbvkPje9s-JkA-7lFJ
-" alt="Neon Lights">
-        <h3>Neon Lights</h3>
-        <p>Aria Skye · Pop</p>
+        <img src="https://tse1.mm.bing.net/th/id/OIP.mmNgAUvoK8WcQ0z3ww0RJQHaFy?r=0&pid=Api&P=0&h=180" alt="Neon Lights album art" alt="Neon Lights">
+        <h3>Silent Rain</h3>
+        <p>Nova Strings · Classical</p>
       </div>
 
       <button class="slider-btn next" id="nextBtn">&#10095;</button>
@@ -536,52 +69,74 @@
     <div class="song-grid">
 
       <div class="song-card">
-        <div class="album-art"><img src="images/midnight-drive.png" alt="Midnight Drive album art"></div>
+        <div class="album-art"><img src="https://tse1.mm.bing.net/th/id/OIP.vtxJyVgEpiqDJcWQRz4-3gHaEK?r=0&pid=Api&P=0&h=180" alt="Midnight Drive album art"></div>
         <h3 class="song-title">Midnight Drive</h3>
         <p class="song-artist">Luna Wave</p>
         <span class="song-genre">Synthwave</span>
+        <div class="song-actions">
+  <button class="update-btn">Update</button>
+  <button class="delete-btn">Delete</button>
+</div>
       </div>
 
       <div class="song-card">
-        <div class="album-art"><img src="images/broken-strings.png" alt="Broken Strings album art"></div>
+        <div class="album-art"><img src="https://tse4.mm.bing.net/th/id/OIP.O0vp4mBjZYTK3RTtKkagGgHaFS?r=0&pid=Api&P=0&h=180" alt="Broken Strings album art"></div>
         <h3 class="song-title">Broken Strings</h3>
         <p class="song-artist">Echo Riders</p>
         <span class="song-genre">Rock</span>
+        <div class="song-actions">
+  <button class="update-btn">Update</button>
+  <button class="delete-btn">Delete</button>
+</div>
       </div>
 
       <div class="song-card">
-        <div class="album-art"><img src="images/golden-hour.png" alt="Golden Hour album art"></div>
+        <div class="album-art"><img src="https://tse1.mm.bing.net/th/id/OIP.aAyt4wWE05laXd0QjUO9YwHaHa?r=0&pid=Api&P=0&h=180" alt="Golden Hour album art"></div>
         <h3 class="song-title">Golden Hour</h3>
         <p class="song-artist">Ivory Keys</p>
         <span class="song-genre">Jazz</span>
+        <div class="song-actions">
+  <button class="update-btn">Update</button>
+  <button class="delete-btn">Delete</button>
+</div>
       </div>
 
       <div class="song-card">
-        <div class="album-art"><img src="images/street-pulse.png" alt="Street Pulse album art"></div>
+        <div class="album-art"><img src="https://tse3.mm.bing.net/th/id/OIP.cbQ1etxAPi3TR1XrZRr4MAHaEJ?r=0&pid=Api&P=0&h=180" alt="Street Pulse album art"></div>
         <h3 class="song-title">Street Pulse</h3>
         <p class="song-artist">Beat District</p>
         <span class="song-genre">Hip-Hop</span>
+        <div class="song-actions">
+  <button class="update-btn">Update</button>
+  <button class="delete-btn">Delete</button>
+</div>
       </div>
 
       <div class="song-card">
-        <div class="album-art"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTI1NVGO2uupwJl-itZQg1lERQj8gCwt5ufPY2k0S5UJOIWHV0LDCgKR7mWNAgP
-" alt="Neon Lights album art"></div>
+        <div class="album-art"><img src="https://tse1.mm.bing.net/th/id/OIP.POSnq7qv6ziF08kpFgEtmAHaFj?r=0&pid=Api&P=0&h=180" alt="Neon Lights album art"></div>
         <h3 class="song-title">Neon Lights</h3>
         <p class="song-artist">Aria Skye</p>
         <span class="song-genre">Pop</span>
+        <div class="song-actions">
+  <button class="update-btn">Update</button>
+  <button class="delete-btn">Delete</button>
+</div>
       </div>
 
       <div class="song-card">
-        <div class="album-art"><img src="images/silent-rain.png" alt="Silent Rain album art"></div>
+        <div class="album-art"><img src="https://tse1.mm.bing.net/th/id/OIP.mmNgAUvoK8WcQ0z3ww0RJQHaFy?r=0&pid=Api&P=0&h=180" alt="Silent Rain album art"></div>
         <h3 class="song-title">Silent Rain</h3>
         <p class="song-artist">Nova Strings</p>
         <span class="song-genre">Classical</span>
+        <div class="song-actions">
+    <button class="update-btn">Update</button>
+    <button class="delete-btn">Delete</button>
+</div>
       </div>
 
     </div>
   </section>
 
-  <!-- ===== Practical 2: Login / Register Modal ===== -->
   <div class="modal-overlay" id="authModal">
     <div class="auth-box">
       <button class="modal-close" id="closeAuthBtn">&#10005;</button>
@@ -636,7 +191,7 @@
   </section>
 
   <footer class="footer">
-    <p>&copy; 2026 BeatBox. Built for learning purposes.</p>
+    <p>2026 BeatBox. Built for learning purposes.</p>
     <div class="social-icons">
       <a href="#">Web</a>
       <a href="#">Insta</a>
@@ -644,209 +199,7 @@
     </div>
   </footer>
 
-  <script>
-    /* ================================
-       PART 1: FEATURED SLIDER
-    ================================= */
-    var slides = document.querySelectorAll(".slide");
-    var dots = document.querySelectorAll(".dot");
-    var currentSlide = 0;
-    var slideTimer;
-
-    function showSlide(index) {
-      // wrap around at both ends
-      if (index >= slides.length) {
-        index = 0;
-      }
-      if (index < 0) {
-        index = slides.length - 1;
-      }
-      currentSlide = index;
-
-      for (var i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
-        dots[i].classList.remove("active");
-      }
-
-      slides[currentSlide].classList.add("active");
-      dots[currentSlide].classList.add("active");
-    }
-
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentSlide - 1);
-    }
-
-    function restartTimer() {
-      clearInterval(slideTimer);
-      slideTimer = setInterval(nextSlide, 4000);
-    }
-
-    document.getElementById("nextBtn").addEventListener("click", function () {
-      nextSlide();
-      restartTimer();
-    });
-
-    document.getElementById("prevBtn").addEventListener("click", function () {
-      prevSlide();
-      restartTimer();
-    });
-
-    dots.forEach(function (dot) {
-      dot.addEventListener("click", function () {
-        var index = parseInt(this.getAttribute("data-index"));
-        showSlide(index);
-        restartTimer();
-      });
-    });
-
-    restartTimer(); // start autoplay
-
-    /* ================================
-       PART 2: LOGIN / REGISTER MODAL OPEN/CLOSE
-    ================================= */
-    var authModal = document.getElementById("authModal");
-    var openAuthBtn = document.getElementById("openAuthBtn");
-    var closeAuthBtn = document.getElementById("closeAuthBtn");
-
-    openAuthBtn.addEventListener("click", function () {
-      authModal.classList.add("active");
-    });
-
-    closeAuthBtn.addEventListener("click", function () {
-      authModal.classList.remove("active");
-    });
-
-    // close modal when clicking the dark overlay (outside the box)
-    authModal.addEventListener("click", function (event) {
-      if (event.target === authModal) {
-        authModal.classList.remove("active");
-      }
-    });
-
-    /* ================================
-       PART 3: LOGIN / REGISTER TAB SWITCH
-    ================================= */
-    var loginTabBtn = document.getElementById("loginTabBtn");
-    var registerTabBtn = document.getElementById("registerTabBtn");
-    var loginForm = document.getElementById("loginForm");
-    var registerForm = document.getElementById("registerForm");
-
-    function switchTab(tabName) {
-      if (tabName === "login") {
-        loginTabBtn.classList.add("active");
-        registerTabBtn.classList.remove("active");
-        loginForm.classList.add("active");
-        registerForm.classList.remove("active");
-      } else {
-        registerTabBtn.classList.add("active");
-        loginTabBtn.classList.remove("active");
-        registerForm.classList.add("active");
-        loginForm.classList.remove("active");
-      }
-    }
-
-    loginTabBtn.addEventListener("click", function () {
-      switchTab("login");
-    });
-
-    registerTabBtn.addEventListener("click", function () {
-      switchTab("register");
-    });
-
-    /* ================================
-       PART 4: FORM VALIDATION
-    ================================= */
-    function isValidEmail(value) {
-      return value.indexOf("@") > 0 && value.indexOf(".") > value.indexOf("@");
-    }
-
-    // ---- Login form ----
-    var loginMsg = document.getElementById("loginMsg");
-
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // stop page reload
-
-      var email = document.getElementById("loginEmail").value.trim();
-      var password = document.getElementById("loginPassword").value.trim();
-
-      if (email === "" || password === "") {
-        loginMsg.textContent = "Please fill in all fields.";
-        loginMsg.className = "form-msg error";
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        loginMsg.textContent = "Please enter a valid email address.";
-        loginMsg.className = "form-msg error";
-        return;
-      }
-
-      if (password.length < 6) {
-        loginMsg.textContent = "Password must be at least 6 characters.";
-        loginMsg.className = "form-msg error";
-        return;
-      }
-
-      loginMsg.textContent = "Login successful! Welcome back.";
-      loginMsg.className = "form-msg success";
-      loginForm.reset();
-
-      setTimeout(function () {
-        authModal.classList.remove("active");
-        loginMsg.textContent = "";
-      }, 1200);
-    });
-
-    // ---- Register form ----
-    var registerMsg = document.getElementById("registerMsg");
-
-    registerForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      var name = document.getElementById("registerName").value.trim();
-      var email = document.getElementById("registerEmail").value.trim();
-      var password = document.getElementById("registerPassword").value.trim();
-      var confirm = document.getElementById("registerConfirm").value.trim();
-
-      if (name === "" || email === "" || password === "" || confirm === "") {
-        registerMsg.textContent = "Please fill in all fields.";
-        registerMsg.className = "form-msg error";
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        registerMsg.textContent = "Please enter a valid email address.";
-        registerMsg.className = "form-msg error";
-        return;
-      }
-
-      if (password.length < 6) {
-        registerMsg.textContent = "Password must be at least 6 characters.";
-        registerMsg.className = "form-msg error";
-        return;
-      }
-
-      if (password !== confirm) {
-        registerMsg.textContent = "Passwords do not match.";
-        registerMsg.className = "form-msg error";
-        return;
-      }
-
-      registerMsg.textContent = "Account created successfully!";
-      registerMsg.className = "form-msg success";
-      registerForm.reset();
-
-      setTimeout(function () {
-        authModal.classList.remove("active");
-        registerMsg.textContent = "";
-        switchTab("login");
-      }, 1200);
-    });
-  </script>
+  <script src="js/sc.js"></script>
 
 </body>
 </html>

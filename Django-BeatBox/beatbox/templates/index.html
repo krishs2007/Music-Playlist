@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- This single attribute activates Bootstrap's native Dark Mode! -->
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatBox Playlist</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/st.css' %}">
+</head>
+<body class="bg-light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3 brand-text" href="#">BeatBox</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
+          <li class="nav-item"><a class="nav-link px-3" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#songs">Songs</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+        </ul>
+        <button class="btn btn-primary ms-lg-4 px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero text-center d-flex align-items-center" id="home" style="min-height: 60vh;">
+    <div class="container">
+      <h1 class="display-3 fw-bold mb-3">Your Music, <span class="brand-text">Your Vibe</span></h1>
+      <p class="lead mb-5 text-secondary">Discover, play, and organize your favorite tracks — all in one place.</p>
+      <a href="#songs" class="btn btn-primary btn-lg px-5 rounded-pill shadow">Browse Songs</a>
+    </div>
+  </section>
+
+  <!-- FEATURED CAROUSEL -->
+  <section class="container py-5">
+    <h2 class="text-center fw-bold mb-5">Featured This Week</h2>
+    
+    <div id="featuredCarousel" class="carousel slide mx-auto shadow-lg rounded-4 overflow-hidden" style="max-width: 900px;" data-bs-ride="carousel">
+      <div class="carousel-indicators mb-4">
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="2"></button>
+      </div>
+      
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.vtxJyVgEpiqDJcWQRz4-3gHaEK?r=0&pid=Api&P=0&h=180" class="d-block w-100" alt="Midnight Drive" style="object-fit: cover; height: 450px;">
+          <div class="carousel-caption bg-dark bg-opacity-75 rounded-4 p-3 mb-4 mx-auto" style="max-width: 300px; backdrop-filter: blur(5px);">
+            <h5 class="fw-bold mb-1">Midnight Drive</h5>
+            <p class="mb-0 text-secondary">Luna Wave</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.aAyt4wWE05laXd0QjUO9YwHaHa?r=0&pid=Api&P=0&h=180" class="d-block w-100" alt="Golden Hour" style="object-fit: cover; height: 450px;">
+          <div class="carousel-caption bg-dark bg-opacity-75 rounded-4 p-3 mb-4 mx-auto" style="max-width: 300px; backdrop-filter: blur(5px);">
+            <h5 class="fw-bold mb-1">Golden Hour</h5>
+            <p class="mb-0 text-secondary">Ivory Keys</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.mmNgAUvoK8WcQ0z3ww0RJQHaFy?r=0&pid=Api&P=0&h=180" class="d-block w-100" alt="Silent Rain" style="object-fit: cover; height: 450px;">
+          <div class="carousel-caption bg-dark bg-opacity-75 rounded-4 p-3 mb-4 mx-auto" style="max-width: 300px; backdrop-filter: blur(5px);">
+            <h5 class="fw-bold mb-1">Silent Rain</h5>
+            <p class="mb-0 text-secondary">Nova Strings</p>
+          </div>
+        </div>
+      </div>
+      
+      <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon p-3 bg-black bg-opacity-50 rounded-circle"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon p-3 bg-black bg-opacity-50 rounded-circle"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- SONG GRID -->
+  <section class="container py-5" id="songs">
+    <h2 class="text-center fw-bold mb-5">Trending Now</h2>
+
+    {% if songs %}
+      <div class="row g-4">
+        {% for song in songs %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 border-0 song-card p-3" data-id="{{ song.id }}">
+            <div class="overflow-hidden rounded-3 mb-3 shadow-sm">
+              <img src="{{ song.cover_url }}" class="card-img-top" alt="{{ song.title }} art" style="object-fit: cover; height: 220px;">
+            </div>
+            <div class="card-body p-0 d-flex flex-column">
+              <h5 class="card-title fw-bold text-truncate mb-1">{{ song.title }}</h5>
+              <p class="card-text text-secondary mb-2">{{ song.artist }}</p>
+              <span class="badge genre-badge mb-4 align-self-start">{{ song.genre }}</span>
+              
+              <div class="mt-auto d-flex gap-2">
+                <button class="btn btn-outline-primary btn-sm flex-fill fw-bold update-btn">Edit</button>
+                <button class="btn btn-outline-danger btn-sm flex-fill fw-bold delete-btn">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center text-secondary my-5 py-5">
+        <h4 class="fw-bold">No tracks found.</h4>
+        <p>Add some music to the database to populate your grid!</p>
+      </div>
+    {% endif %}
+  </section>
+
+  <!-- AUTH MODAL -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg custom-modal">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h4 class="modal-title fw-bold ms-2 mt-2">My Account</h4>
+          <button type="button" class="btn-close me-2 mt-2" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <ul class="nav nav-pills mb-4 nav-justified custom-tabs" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <button class="nav-link active fw-bold" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button">Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link fw-bold" id="pills-register-tab" data-bs-toggle="pill" data-bs-target="#pills-register" type="button">Register</button>
+            </li>
+          </ul>
+          
+          <div class="tab-content" id="pills-tabContent">
+            <!-- Login -->
+            <div class="tab-pane fade show active" id="pills-login">
+              <form id="loginForm">
+                <div class="mb-3">
+                  <label class="form-label text-secondary small fw-bold">EMAIL</label>
+                  <input type="email" class="form-control form-control-lg custom-input" id="loginEmail" placeholder="you@example.com">
+                </div>
+                <div class="mb-4">
+                  <label class="form-label text-secondary small fw-bold">PASSWORD</label>
+                  <input type="password" class="form-control form-control-lg custom-input" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold">Login</button>
+                <p class="form-msg mt-3 text-center" id="loginMsg"></p>
+              </form>
+            </div>
+            <!-- Register -->
+            <div class="tab-pane fade" id="pills-register">
+              <form id="registerForm">
+                <div class="mb-3">
+                  <label class="form-label text-secondary small fw-bold">FULL NAME</label>
+                  <input type="text" class="form-control custom-input" id="registerName">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-secondary small fw-bold">EMAIL</label>
+                  <input type="email" class="form-control custom-input" id="registerEmail">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-secondary small fw-bold">PASSWORD</label>
+                  <input type="password" class="form-control custom-input" id="registerPassword">
+                </div>
+                <div class="mb-4">
+                  <label class="form-label text-secondary small fw-bold">CONFIRM PASSWORD</label>
+                  <input type="password" class="form-control custom-input" id="registerConfirm">
+                </div>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold">Create Account</button>
+                <p class="form-msg mt-3 text-center" id="registerMsg"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT & FOOTER -->
+  <section class="container py-5 text-center border-top border-secondary mt-5" id="about">
+    <h3 class="fw-bold mb-3">About BeatBox</h3>
+    <p class="text-secondary w-75 mx-auto">BeatBox is a simple playlist catalog built to explore and organize music by genre, artist, and mood.</p>
+  </section>
+
+  <footer class="bg-black text-light py-4 text-center mt-auto">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <p class="mb-2 mb-md-0 text-secondary small fw-bold">2026 BeatBox. Built for learning purposes.</p>
+      <div class="d-flex gap-4">
+        <a href="#" class="text-secondary text-decoration-none hover-white">Web</a>
+        <a href="#" class="text-secondary text-decoration-none hover-white">Insta</a>
+        <a href="#" class="text-secondary text-decoration-none hover-white">X</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/sc.js' %}"></script>
+
+</body>
+</html>

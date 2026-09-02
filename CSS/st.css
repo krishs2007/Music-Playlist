@@ -1,0 +1,113 @@
+/* ===== GLOBAL STYLES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212 !important; /* Base dark background */
+}
+
+.brand-text {
+  color: #1DB954 !important; /* Spotify Green */
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  color: #b3b3b3 !important;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background-color: #1DB954 !important;
+  border-color: #1DB954 !important;
+  color: #000000 !important;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #17a34a !important;
+  border-color: #17a34a !important;
+  transform: scale(1.04);
+}
+
+.btn-outline-primary {
+  color: #1DB954 !important;
+  border-color: #1DB954 !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #1DB954 !important;
+  color: #000000 !important;
+}
+
+/* ===== SONG CARDS ===== */
+.song-card {
+  background-color: #181818 !important; /* Slightly lighter than body */
+  border-radius: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.song-card:hover {
+  transform: translateY(-8px);
+  background-color: #282828 !important; /* Hover highlight */
+}
+
+.song-card img {
+  transition: transform 0.4s ease;
+}
+
+.song-card:hover img {
+  transform: scale(1.05);
+}
+
+.genre-badge {
+  background-color: rgba(29, 185, 84, 0.15) !important;
+  color: #1DB954 !important;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* ===== MODAL & FORMS ===== */
+.custom-modal {
+  background-color: #181818 !important;
+}
+
+.custom-input {
+  background-color: #282828 !important;
+  border: 1px solid #3e3e3e !important;
+  color: white !important;
+}
+
+.custom-input:focus {
+  border-color: #1DB954 !important;
+  box-shadow: 0 0 0 0.25rem rgba(29, 185, 84, 0.25) !important;
+}
+
+/* Custom Nav Tabs for Auth */
+.custom-tabs .nav-link {
+  color: #b3b3b3 !important;
+  border-radius: 30px;
+}
+
+.custom-tabs .nav-link.active {
+  background-color: #282828 !important;
+  color: #ffffff !important;
+}
+
+/* ===== UTILITIES ===== */
+.hover-white:hover {
+  color: #ffffff !important;
+}
+
+.form-msg {
+  font-size: 14px;
+}
+.form-msg.error { color: #ff4d4d; }
+.form-msg.success { color: #1DB954; }
